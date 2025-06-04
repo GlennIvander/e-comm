@@ -66,4 +66,4 @@ end
 
 gem "devise", "~> 4.9"
 
-gem "font-awesome-sass", " ~> 6.5.1"
+gem "font-awesome-sass", "~> 6.7.2"
