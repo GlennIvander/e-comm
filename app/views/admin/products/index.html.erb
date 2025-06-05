@@ -1,0 +1,39 @@
+<% content_for :title, "Products" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Products</h1>
+    <%= link_to "New product", new_admin_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 mr-5">
+
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="text-center text-lg"></th>
+        <th scope="col" class="text-center text-lg">Name</th>
+        <th scope="col" class="text-center text-lg">Description</th>
+        <th scope="col" class="text-center text-lg">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @admin_products.any? %>
+        <% @admin_products.each do |p| %>
+          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+            <td class="px-6 py-4"><%= image_tag(p.images.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: p.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# p.images.any? ? image_tag(p.image.variant(:thumb)) : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png")  %></td>
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to p.name, admin_product_path(p) %></th>
+            <td class="px-6 py-4"><%= p.description %></td>
+            <td class="px-6 py-4">₱ <%= number_with_delimiter(p.price) %></td>
+          </tr>
+        <% end %>
+      <% else %>
+      <p class="text-center my-10">No products found.</p>
+      <% end %>
+    </tbody>
+  </table>
+</div>
