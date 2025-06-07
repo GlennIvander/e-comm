@@ -6,5 +6,5 @@ class Product < ApplicationRecord
   has_one_attached :images
 
   belongs_to :category
-  has_many :stocks
+  has_many :stocks, dependent: :destroy
 end

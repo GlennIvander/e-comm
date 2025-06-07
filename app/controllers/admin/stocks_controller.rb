@@ -4,7 +4,7 @@ class Admin::StocksController < AdminController
 
   # GET /admin/stocks or /admin/stocks.json
   def index
-    @admin_stocks = Stock.all
+    @admin_stocks = Stock.where(product_id: params[:product_id])
   end
 
   # GET /admin/stocks/1 or /admin/stocks/1.json
@@ -13,7 +13,6 @@ class Admin::StocksController < AdminController
 
   # GET /admin/stocks/new
   def new
-    @product = Product.find(params[:product_id])
     @admin_stock = Stock.new
   end
 
@@ -23,12 +22,11 @@ class Admin::StocksController < AdminController
 
   # POST /admin/stocks or /admin/stocks.json
   def create
-    @product = Product.find(params[:product_id])
     @admin_stock = @product.stocks.new(admin_stock_params)
 
     respond_to do |format|
       if @admin_stock.save
-        format.html { redirect_to admin_product_stocks_path(@product, @admin_stock), notice: "Stock was successfully created." }
+        format.html { redirect_to admin_product_stocks_path(@product, @admin_stock), notice: "Stock #{@admin_stock.size} was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -52,7 +50,7 @@ class Admin::StocksController < AdminController
     @admin_stock.destroy!
 
     respond_to do |format|
-      format.html { redirect_to admin_product_stocks_path, status: :see_other, notice: "Stock was successfully destroyed." }
+      format.html { redirect_to admin_product_stocks_path, status: :see_other, notice: "Stock #{@admin_stock.size} was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,7 +58,7 @@ class Admin::StocksController < AdminController
   private
 
   def set_product
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by(params[:product_id])
   end
 
   # Use callbacks to share common setup or constraints between actions.

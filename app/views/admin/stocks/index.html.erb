@@ -9,21 +9,29 @@
     <h1 class="font-bold text-4xl">Stocks</h1>
     <%= link_to "New stock", new_admin_product_stock_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
+<br>
+<div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
 
-  <div id="admin_stocks" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @admin_stocks.any? %>
-      <% @admin_stocks.each do |admin_stock| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render admin_stock %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", admin_product_stock_path(@product, admin_stock), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_admin_product_stock_path(@product, admin_stock), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", admin_product_stock_path(@product, admin_stock), method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Size</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Amount</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <% if @admin_stocks.any? %>
+        <% @admin_stocks.each do |s| %>
+          <tr>
+            <td class="py-4 px-6 border-b border-gray-200""><%= link_to s.size, admin_product_stock_path(@product, s)%></th>
+            <td class="py-4 px-6 border-b border-gray-200""><%= s.amount %></td>
+          </tr>
+        <% end %>
+      <% else %>
+      <p class="text-center my-10">No stock/s found.</p>
       <% end %>
-    <% else %>
-      <p class="text-center my-10">No stocks found.</p>
-    <% end %>
-  </div>
+    </tbody>
+  </table>
 </div>
+<br>
+<%= link_to "Back to Product", admin_products_path, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>

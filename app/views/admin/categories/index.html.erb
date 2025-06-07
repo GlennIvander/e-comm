@@ -9,24 +9,24 @@
     <h1 class="font-bold text-4xl">Categories</h1>
     <%= link_to "New category", new_admin_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
+<br>
+<div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 mr-5">
-
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="text-center text-lg">Image</th>
-        <th scope="col" class="text-center text-lg">Category</th>
-        <th scope="col" class="text-center text-lg">Description</th>
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Image</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Category</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Description</th>
       </tr>
     </thead>
     <tbody>
       <% if @admin_categories.any? %>
         <% @admin_categories.each do |c| %>
-          <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-            <td class="px-6 py-4"><%= image_tag(c.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: c.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# image_tag(c.image.variant(:thumb)) %></td>
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= link_to c.name, admin_category_path(c) %></th>
-            <td class="px-6 py-4"><%= c.description %></td>
+          <tr>
+            <td class="py-4 px-6 border-b border-gray-200"><%= image_tag(c.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: c.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# image_tag(c.image.variant(:thumb)) %></td>
+            <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= link_to c.name, admin_category_path(c) %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= c.description %></td>
           </tr>
         <% end %>
       <% else %>
