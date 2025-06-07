@@ -9,21 +9,30 @@
     <h1 class="font-bold text-4xl">Orders</h1>
     <%= link_to "New order", new_admin_order_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
-
-  <div id="admin_orders" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @admin_orders.any? %>
-      <% @admin_orders.each do |admin_order| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render admin_order %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", admin_order, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_admin_order_path(admin_order), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", admin_order, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
+<br>
+<div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Customer Email</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Fulfilled</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Total</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @admin_orders.any? %>
+        <% @admin_orders.each do |o| %>
+          <tr>
+            <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= link_to o.customer_email, admin_order_path(o) %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= o.fulfilled %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= o.total %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= o.address %></td>
+          </tr>
+        <% end %>
+      <% else %>
       <p class="text-center my-10">No orders found.</p>
-    <% end %>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 </div>
