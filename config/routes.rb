@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :stocks
     end
     resources :categories
+    resources :orders
   end
 
   devise_for :admins
