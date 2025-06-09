@@ -10,28 +10,48 @@
     <%= link_to "New order", new_admin_order_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 <br>
+<h2>Unfulfilled Orders</h2>
 <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
   <table class="w-full table-fixed">
     <thead>
       <tr class="bg-gray-100">
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Order ID</th>
         <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Customer Email</th>
-        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Fulfilled</th>
-        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Total</th>
         <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Address</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Total</th>
       </tr>
     </thead>
     <tbody>
-      <% if @admin_orders.any? %>
-        <% @admin_orders.each do |o| %>
-          <tr>
-            <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= link_to o.customer_email, admin_order_path(o) %></td>
-            <td class="py-4 px-6 border-b border-gray-200"><%= o.fulfilled %></td>
-            <td class="py-4 px-6 border-b border-gray-200"><%= o.total %></td>
-            <td class="py-4 px-6 border-b border-gray-200"><%= o.address %></td>
-          </tr>
-        <% end %>
-      <% else %>
-      <p class="text-center my-10">No orders found.</p>
+      <% @not_fulfilled_orders.each do |o| %>
+        <tr>
+          <td scope="row" class="py-4 px-6 border-b border-gray-200 underline"><%= link_to o.id, admin_order_path(o) %></td>
+          <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= o.customer_email %></td>
+          <td class="py-4 px-6 border-b border-gray-200"><%= o.address %></td>
+          <td class="py-4 px-6 border-b border-gray-200">₱ <%= number_with_delimiter(o.total) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<h2>Fulfilled Orders</h2>
+<div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Order ID</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Customer Email</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Address</th>
+        <th scope="col" class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase text-center text-lg">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fulfilled_orders.each do |o| %>
+        <tr>
+          <td scope="row" class="py-4 px-6 border-b border-gray-200 underline"><%= link_to o.id, admin_order_path(o) %></td>
+          <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= o.customer_email %></td>
+          <td class="py-4 px-6 border-b border-gray-200"><%= o.address %></td>
+          <td class="py-4 px-6 border-b border-gray-200">₱ <%= number_with_delimiter(o.total) %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

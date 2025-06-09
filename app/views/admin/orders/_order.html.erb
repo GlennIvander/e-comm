@@ -9,10 +9,19 @@
   </div>
   <div>
     <strong class="block font-medium mb-1">Total:</strong>
-    <%= order.total %>
+    ₱ <%= number_with_delimiter(order.total) %>
   </div>
   <div>
     <strong class="block font-medium mb-1">Address:</strong>
     <%= order.address %>
   </div>
+    <% if order.order_products.any? %>
+  <strong class="block font-medium mb-1">Order Products</strong>
+    <% order.order_products.each do |op| %>
+      <%= op.product.name %>
+      <%= op.size %>
+      <%= op.quantity %>
+    <% end %>
+    <% else %>
+    <% end %>
 </div>
