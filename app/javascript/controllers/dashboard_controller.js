@@ -15,7 +15,7 @@ export default class extends Controller {
         labels: labels,
         datasets: [
           {
-            labels: "Revenue $",
+            labels: "Revenue ₱",
             data: data,
             borderWidth: 3,
             fill: true,

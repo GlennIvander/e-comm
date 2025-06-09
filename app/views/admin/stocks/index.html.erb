@@ -23,8 +23,8 @@
       <% if @admin_stocks.any? %>
         <% @admin_stocks.each do |s| %>
           <tr>
-            <td class="py-4 px-6 border-b border-gray-200""><%= link_to s.size, admin_product_stock_path(@product, s)%></th>
-            <td class="py-4 px-6 border-b border-gray-200""><%= s.amount %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= link_to s.size, admin_product_stock_path(@product, s)%></th>
+            <td class="py-4 px-6 border-b border-gray-200"><%= s.amount %></td>
           </tr>
         <% end %>
       <% else %>
