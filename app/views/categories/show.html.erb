@@ -1,0 +1,20 @@
+<h1>Category Show Page</h1>
+<div class="min-h-screen flex justify-center">
+  <div class="flex flex-wrap flex-col mt-6">
+    <h2 class="text-lg text-gray-800">Filter</h2>
+  </div>
+  <div class="flex flex-wrap mt-6 gap-10 glex-grow justify-center items-start">
+    <% if @products.empty? %>
+    <p class="text-2xl text-left text-gray-800">No products found</p>
+    <% else %>
+    <% @products.each do |product| %>
+      <%=link_to root_path do  %>
+      <div class="max-w-xs flex flex-col p-4 justify-center items-center">
+        <%# <%= image_tag(product.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: product.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %>
+        <p class="mt-6 font-medium text-gray-800"> <%= product.name %> </p>
+      </div>
+      <% end %>
+      <% end %>
+      <% end  %>
+  </div>
+</div>
