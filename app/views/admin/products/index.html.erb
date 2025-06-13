@@ -25,7 +25,7 @@
       <% if @admin_products.any? %>
         <% @admin_products.each do |p| %>
           <tr>
-            <td class="py-4 px-6 border-b border-gray-200"><%= image_tag(p.images.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: p.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# p.images.any? ? image_tag(p.image.variant(:thumb)) : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png")  %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%= image_tag(p.images.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: p.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# p.images.present? ? image_tag(p.image.variant(:thumb)) : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png")  %></td>
             <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= link_to p.name, admin_product_path(p) %></td>
             <td class="py-4 px-6 border-b border-gray-200"><%= p.description %></td>
             <td class="py-4 px-6 border-b border-gray-200">₱ <%= number_with_delimiter(p.price) %></td>

@@ -23,7 +23,9 @@
       <% if @admin_categories.any? %>
         <% @admin_categories.each do |c| %>
           <tr>
-            <td class="py-4 px-6 border-b border-gray-200"><%= image_tag(c.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: c.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# image_tag(c.image.variant(:thumb)) %></td>
+            <td class="py-4 px-6 border-b border-gray-200"><%# image_tag(c.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: c.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %> <%# c.image.present? ? image_tag(c.image.variant(:thumb), size: "50x50") : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50") %> <%= c.image.attached? ? image_tag(url_for(c.image.variant(:thumb)), size: "50x50", alt: c.name) : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: c.name) %>
+
+ </td>
             <td scope="row" class="py-4 px-6 border-b border-gray-200"><%= link_to c.name, admin_category_path(c) %></td>
             <td class="py-4 px-6 border-b border-gray-200"><%= c.description %></td>
           </tr>
