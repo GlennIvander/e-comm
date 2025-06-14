@@ -19,4 +19,11 @@
     <strong class="block font-medium mb-1">Active:</strong>
     <%= product.active? ? "Yes" : "No" %>
   </div>
+  <div class="my-5">
+    <% if @admin_product.images.any? %>
+      <% @admin_product.images.each do |images| %>
+        <%= image_tag images, class:"w-20 h-20 object-cover rounded-md" %>
+        <% end %>
+    <% end  %>
+  </div>
 </div>

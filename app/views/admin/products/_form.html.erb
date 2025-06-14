@@ -39,6 +39,11 @@
   </div>
 
   <div class="my-5">
+    <% if admin_product.images.any? %>
+      <% admin_product.images.each do |images| %>
+        <%= image_tag images, class:"w-20 h-20 object-cover rounded-md" %>
+        <% end %>
+    <% end  %>
     <%= form.label :image %>
     <%= form.file_field :images, multiple: true, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": admin_product.errors[:description].none?, "border-red-400 focus:outline-red-600": admin_product.errors[:description].any?}] %>
   </div>

@@ -8,8 +8,8 @@
   <% @main_categories.each do |category| %>
     <%= link_to category_path(category) do %>
       <div class="flex flex-col mb-4">
-        <h2 class="text-gray-800 font-medium text-lg text-center mb-6"> <%= category.name %> </h2>
-        <%= image_tag(category.image.presence || "https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", alt: category.name, style: "width: 50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") %>
+        <h2 class="text-gray-800 font-medium text-lg text-center mb-6 uppercase"> <%= category.name %> </h2>
+        <%= category.image.present? ? image_tag(category.image, size: "512x512") : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "512x512") %>
       </div>
     <% end %>
   <% end %>
