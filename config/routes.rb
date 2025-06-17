@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   # get "category", to: "category#index"
 
   resources :categories, only: [ :show ]
+  resources :products, only: [ :show ]
 end

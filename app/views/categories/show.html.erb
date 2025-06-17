@@ -8,7 +8,7 @@
       <p class="text-2xl text-left text-gray-800">No products found</p>
     <% else %>
       <% @products.each do |product| %>
-        <%=link_to root_path do  %>
+        <%=link_to product_path(product) do  %>
         <div class="max-w-xs flex flex-col p-4 justify-center items-center">
           <%= product.images.first ? image_tag(product.images.first.variant(:medium)) : image_tag("https://cdn0.iconfinder.com/data/icons/picture-editing-1/2048/Broken_Image-512.png", size: "50x50", class:"rounded") %>
           <p class="mt-6 font-medium text-gray-800 uppercase"> <%= product.name %> </p>
