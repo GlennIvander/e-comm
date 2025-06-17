@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   # get "category", to: "category#index"
 
-  resources :categories, only: [ :show ]
+  resources :categories, only: [ :show ] # this will need ID params
   resources :products, only: [ :show ]
+  get "cart" => "carts#show" # no need for ID params
 end
