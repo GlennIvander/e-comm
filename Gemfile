@@ -69,3 +69,5 @@ gem "devise", "~> 4.9"
 gem "font-awesome-sass", " ~> 6.5.1"
 
 gem "mini_magick"
+
+gem "stripe", "~> 15.2"
