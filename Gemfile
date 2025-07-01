@@ -70,4 +70,4 @@ gem "font-awesome-sass", " ~> 6.5.1"
 
 gem "mini_magick"
 
-gem "stripe", "~> 15.2"
+gem "stripe", "~> 15.3"
